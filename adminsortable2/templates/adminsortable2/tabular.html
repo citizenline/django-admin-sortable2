@@ -5,7 +5,7 @@
 <fieldset class="module">
    <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
    {{ inline_admin_formset.formset.non_form_errors }}
-   <table>
+   <table class="table">
      <thead><tr><th>{% trans "Sort" %}</th>
      {% for field in inline_admin_formset.fields %}
        {% if not field.widget.is_hidden %}
@@ -49,8 +49,7 @@
               {% if field.is_readonly %}
                   <p>{{ field.contents|linebreaksbr }}</p>
               {% else %}
-                  {{ field.field.errors.as_ul }}
-                  {{ field.field }}
+                  {% include "adminsortable2/includes/field.html" with is_tabular=True %}
               {% endif %}
               </td>
             {% endfor %}
